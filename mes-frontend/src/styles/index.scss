@@ -1,0 +1,508 @@
+/* ============================================================
+   Garment MES — 设计系统 (Design Tokens)
+   方法论：frontend-design — 锚定"服装生产"本体
+   签名元素：织纹(warp/weft) + 织线(thread) 激活指示
+   配色：冷调瓷白 + 深墨蓝文本 + 星空蓝(克制) + 织机金(点缀)
+   字体：Sora(品牌/标题) · 系统中文(正文) · Space Grotesk(数据)
+   ============================================================ */
+
+:root {
+  /* —— 品牌 / 强调 —— */
+  --mes-thread: #4d9cff;            /* 星空蓝主色，克制使用 */
+  --mes-thread-deep: #2a5bd7;      /* 按压 / 激活 */
+  --mes-thread-soft: #eaf2ff;      /* 浅蓝底纹 / hover 态 */
+  --mes-loom: #c8a24a;             /* 织机金，仅用于高亮数据，不喧宾夺主 */
+
+  /* —— 墨色文本 —— */
+  --mes-ink: #16203a;              /* 主文本：深墨蓝 */
+  --mes-ink-2: #3d4a63;
+  --mes-slate: #69778f;            /* 常规文本 */
+  --mes-mist: #9aa6b8;             /* 次级 / 占位 */
+
+  /* —— 表面 / 结构 —— */
+  --mes-porcelain: #f5f7fa;        /* 页面底，冷调瓷白（非奶油） */
+  --mes-surface: #ffffff;          /* 卡片 */
+  --mes-surface-2: #fbfcfe;        /* 次级表面 */
+  --mes-line: #e6eaf1;             /* 分隔线 */
+  --mes-line-strong: #d6dce6;
+
+  /* —— 语义状态（沉静版） —— */
+  --mes-success: #1fa971;
+  --mes-success-soft: #e6f6ef;
+  --mes-warning: #e0a23c;
+  --mes-warning-soft: #fbf2e2;
+  --mes-danger: #e5604d;
+  --mes-danger-soft: #fdecea;
+  --mes-info: #6b7a99;
+
+  /* —— 圆角 —— */
+  --mes-r-xs: 6px;
+  --mes-r-sm: 10px;
+  --mes-r: 14px;
+  --mes-r-lg: 20px;
+
+  /* —— 阴影（浅景深，承托而非漂浮） —— */
+  --mes-shadow-xs: 0 1px 2px rgba(22, 32, 58, 0.04), 0 1px 3px rgba(22, 32, 58, 0.06);
+  --mes-shadow-sm: 0 4px 14px rgba(22, 32, 58, 0.07);
+  --mes-shadow: 0 8px 24px rgba(22, 32, 58, 0.1);
+  --mes-shadow-lg: 0 18px 44px rgba(22, 32, 58, 0.14);
+
+  /* —— 字体 —— */
+  --mes-font-display: 'Sora', 'PingFang SC', 'Microsoft YaHei', system-ui, sans-serif;
+  --mes-font-body: 'PingFang SC', 'Microsoft YaHei', 'Noto Sans SC', system-ui, -apple-system, sans-serif;
+  --mes-font-data: 'Space Grotesk', 'Sora', 'PingFang SC', system-ui, sans-serif;
+
+  /* —— 节奏 —— */
+  --mes-space: 20px;
+  --mes-space-sm: 12px;
+  --mes-sidebar-w: 248px;
+  --mes-header-h: 64px;
+
+  /* —— 动效 —— */
+  --mes-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --mes-dur: 0.26s;
+}
+
+html.dark {
+  --mes-thread: #5aa6ff;
+  --mes-thread-deep: #4d9cff;
+  --mes-thread-soft: #16233f;
+  --mes-loom: #d8b25c;
+
+  --mes-ink: #e8ecf3;
+  --mes-ink-2: #c2cad8;
+  --mes-slate: #9aa6ba;
+  --mes-mist: #6b7689;
+
+  --mes-porcelain: #0e1118;
+  --mes-surface: #161b25;
+  --mes-surface-2: #1c2230;
+  --mes-line: #283041;
+  --mes-line-strong: #36415a;
+
+  --mes-success-soft: #13271f;
+  --mes-warning-soft: #2a2316;
+  --mes-danger-soft: #2c1815;
+
+  --mes-shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --mes-shadow-sm: 0 4px 14px rgba(0, 0, 0, 0.4);
+  --mes-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  --mes-shadow-lg: 0 18px 44px rgba(0, 0, 0, 0.6);
+}
+
+/* ============ Element Plus 主题对齐 ============ */
+:root {
+  --el-color-primary: var(--mes-thread);
+  --el-color-primary-light-3: #6fa9ff;
+  --el-color-primary-light-5: #9cc4ff;
+  --el-color-primary-light-7: #c6dcff;
+  --el-color-primary-light-8: #dcebff;
+  --el-color-primary-light-9: var(--mes-thread-soft);
+  --el-color-primary-dark-2: var(--mes-thread-deep);
+  --el-border-radius-base: var(--mes-r-sm);
+  --el-border-radius-small: var(--mes-r-xs);
+  --el-font-family: var(--mes-font-body);
+  --el-text-color-primary: var(--mes-ink);
+  --el-text-color-regular: var(--mes-slate);
+  --el-border-color: var(--mes-line);
+  --el-border-color-light: var(--mes-line);
+  --el-fill-color-blank: var(--mes-surface);
+  --el-bg-color-overlay: var(--mes-surface);
+}
+
+/* ============ 基础 ============ */
+* { box-sizing: border-box; }
+
+html, body, #app { height: 100%; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--mes-font-body);
+  background-color: var(--mes-porcelain);
+  color: var(--mes-ink);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  transition: background-color var(--mes-dur) var(--mes-ease);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* 数字 / 计量统一用等宽数字字体 */
+.mes-num {
+  font-family: var(--mes-font-data);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+}
+
+/* ============ 织纹背景（签名：warp/weft） ============ */
+.mes-weave {
+  background-color: var(--mes-thread-deep);
+  background-image:
+    linear-gradient(0deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* ============ 页面容器 ============ */
+.page-container { padding: var(--mes-space); max-width: 1480px; margin: 0 auto; }
+
+.page-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+.page-head__title {
+  font-family: var(--mes-font-display);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--mes-ink);
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+.page-head__eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--mes-thread-deep);
+  font-weight: 600;
+  margin: 0 0 6px;
+}
+.page-head__sub { color: var(--mes-slate); font-size: 13px; margin: 6px 0 0; }
+.page-head__actions { display: flex; align-items: center; gap: 10px; }
+
+/* ============ 卡片 ============ */
+.mes-card {
+  background: var(--mes-surface);
+  border: 1px solid var(--mes-line);
+  border-radius: var(--mes-r);
+  box-shadow: var(--mes-shadow-xs);
+  padding: 20px;
+}
+
+/* ============ 兼容旧 CRUD 页 .page-header（沿用新设计语言） ============ */
+.page-header { margin-bottom: 20px; }
+.page-header .title {
+  font-family: var(--mes-font-display);
+  font-size: 22px; font-weight: 700; color: var(--mes-ink);
+  margin: 0; letter-spacing: -0.01em;
+}
+.page-header .subtitle { color: var(--mes-slate); font-size: 13px; margin: 6px 0 0; }
+
+/* 表格圆角与分隔优化 */
+.el-table {
+  --el-table-border-color: var(--mes-line);
+  --el-table-header-bg-color: var(--mes-surface-2);
+  border-radius: var(--mes-r-sm);
+  overflow: hidden;
+}
+.el-table th.el-table__cell { font-weight: 600; color: var(--mes-ink-2); }
+
+/* ============ 统计卡 ============ */
+.stat-card {
+  position: relative;
+  background: var(--mes-surface);
+  border: 1px solid var(--mes-line);
+  border-radius: var(--mes-r);
+  box-shadow: var(--mes-shadow-xs);
+  padding: 22px 22px 20px;
+  overflow: hidden;
+  transition: transform var(--mes-dur) var(--mes-ease), box-shadow var(--mes-dur) var(--mes-ease),
+    border-color var(--mes-dur) var(--mes-ease);
+}
+.stat-card::before {
+  /* 顶部织线签名 */
+  content: '';
+  position: absolute;
+  left: 0; top: 0;
+  width: 100%; height: 3px;
+  background: var(--mes-thread);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--mes-dur) var(--mes-ease);
+}
+.stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--mes-shadow);
+  border-color: var(--mes-line-strong);
+}
+.stat-card:hover::before { transform: scaleX(1); }
+.stat-card__label {
+  font-size: 13px;
+  color: var(--mes-slate);
+  display: flex; align-items: center; gap: 8px;
+}
+.stat-card__icon {
+  width: 30px; height: 30px; border-radius: 9px;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--mes-thread-soft); color: var(--mes-thread-deep);
+}
+.stat-card__value {
+  font-family: var(--mes-font-data);
+  font-variant-numeric: tabular-nums;
+  font-size: 34px; font-weight: 700; line-height: 1.1;
+  color: var(--mes-ink); margin-top: 14px;
+}
+.stat-card__delta { font-size: 12px; margin-top: 8px; color: var(--mes-mist); }
+.stat-card__delta.up { color: var(--mes-success); }
+.stat-card__delta.down { color: var(--mes-danger); }
+
+/* ============ 区块卡（带抬头） ============ */
+.section-card {
+  background: var(--mes-surface);
+  border: 1px solid var(--mes-line);
+  border-radius: var(--mes-r);
+  box-shadow: var(--mes-shadow-xs);
+  overflow: hidden;
+}
+.section-card__head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--mes-line);
+}
+.section-card__title {
+  font-family: var(--mes-font-display);
+  font-size: 15px; font-weight: 600; color: var(--mes-ink);
+  display: flex; align-items: center; gap: 9px; margin: 0;
+}
+.section-card__title::before {
+  content: ''; width: 4px; height: 15px; border-radius: 2px;
+  background: var(--mes-thread);
+}
+.section-card__body { padding: 20px; }
+
+/* ============ 状态色卡（Pantone 式方块，非胶囊） ============ */
+.status-chip {
+  display: inline-flex; align-items: center; gap: 7px;
+  font-size: 12px; color: var(--mes-slate);
+}
+.status-chip__swatch {
+  width: 9px; height: 9px; border-radius: 2px; flex-shrink: 0;
+}
+.status-chip.ok .status-chip__swatch { background: var(--mes-success); }
+.status-chip.warn .status-chip__swatch { background: var(--mes-warning); }
+.status-chip.danger .status-chip__swatch { background: var(--mes-danger); }
+.status-chip.info .status-chip__swatch { background: var(--mes-info); }
+.status-chip.thread .status-chip__swatch { background: var(--mes-thread); }
+
+/* ============ 通用工具条 ============ */
+.toolbar {
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 16px; flex-wrap: wrap;
+}
+.toolbar .spacer { flex: 1; }
+
+/* ============ 状态标签（柔光胶囊） ============ */
+.status-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px 3px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+  line-height: 1.5;
+  font-weight: 500;
+  background: var(--mes-surface-2);
+  color: var(--mes-slate);
+  border: 1px solid var(--mes-line);
+  white-space: nowrap;
+}
+.status-tag__dot { width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+.status-tag--ok { background: var(--mes-success-soft); color: var(--mes-success); border-color: transparent; }
+.status-tag--warn { background: var(--mes-warning-soft); color: var(--mes-warning); border-color: transparent; }
+.status-tag--danger { background: var(--mes-danger-soft); color: var(--mes-danger); border-color: transparent; }
+.status-tag--thread { background: var(--mes-thread-soft); color: var(--mes-thread-deep); border-color: transparent; }
+
+/* ============ Element Plus 组件细化 ============ */
+/* 输入/选择聚焦柔和光 */
+.el-input__wrapper,
+.el-select__wrapper,
+.el-textarea__inner {
+  transition: box-shadow var(--mes-dur) var(--mes-ease), border-color var(--mes-dur) var(--mes-ease);
+}
+.el-input__wrapper.is-focus,
+.el-select__wrapper.is-focused,
+.el-textarea__inner:focus {
+  box-shadow: 0 0 0 1px var(--mes-thread) inset, 0 0 0 3px rgba(77, 156, 255, 0.15) !important;
+}
+
+/* 按钮圆角与过渡统一 */
+.el-button {
+  border-radius: var(--mes-r-sm);
+  transition: all var(--mes-dur) var(--mes-ease);
+}
+.el-button--primary {
+  box-shadow: 0 2px 8px rgba(77, 156, 255, 0.22);
+}
+.el-button--primary:hover {
+  box-shadow: 0 6px 16px rgba(77, 156, 255, 0.32);
+  transform: translateY(-1px);
+}
+
+/* 表格：更精致的表头与行 hover */
+.el-table {
+  --el-table-border-color: var(--mes-line);
+  --el-table-header-bg-color: var(--mes-surface-2);
+  --el-table-row-hover-bg-color: color-mix(in srgb, var(--mes-thread-soft) 55%, transparent);
+  border-radius: var(--mes-r-sm);
+  overflow: hidden;
+}
+.el-table th.el-table__cell {
+  font-weight: 600;
+  color: var(--mes-ink-2);
+  background: var(--mes-surface-2);
+  border-bottom: 1px solid var(--mes-line);
+}
+.el-table td.el-table__cell { border-bottom: 1px solid var(--mes-line); }
+.el-table .el-table__row { transition: background var(--mes-dur) var(--mes-ease); }
+.el-table--striped .el-table__body tr.el-table__row--striped td.el-table__cell {
+  background: color-mix(in srgb, var(--mes-surface-2) 55%, transparent);
+}
+
+/* 表格空状态 */
+.el-table__empty-block { padding: 36px 0; }
+.el-table__empty-text {
+  color: var(--mes-mist);
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* 分页 */
+.el-pagination {
+  --el-pagination-button-bg-color: transparent;
+  --el-pagination-hover-color: var(--mes-thread-deep);
+}
+.el-pagination.is-background .el-pager li,
+.el-pagination.is-background .btn-prev,
+.el-pagination.is-background .btn-next {
+  border-radius: 8px;
+  background: var(--mes-surface-2);
+  min-width: 30px;
+}
+.el-pagination.is-background .el-pager li.is-active {
+  background: var(--mes-thread);
+  color: #fff;
+}
+
+/* 对话框：圆角 + 柔和阴影 + 头部分隔 */
+.el-dialog {
+  border-radius: var(--mes-r-lg);
+  box-shadow: var(--mes-shadow-lg);
+  overflow: hidden;
+}
+.el-dialog__header {
+  margin-right: 0;
+  padding: 20px 24px 16px;
+  border-bottom: 1px solid var(--mes-line);
+}
+.el-dialog__title {
+  font-family: var(--mes-font-display);
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--mes-ink);
+}
+.el-dialog__body { padding: 22px 24px; }
+.el-dialog__footer {
+  padding: 14px 24px 20px;
+  border-top: 1px solid var(--mes-line);
+}
+
+/* 抽屉 */
+.el-drawer {
+  --el-drawer-bg-color: var(--mes-surface);
+}
+.el-drawer__header {
+  margin-bottom: 0;
+  padding: 20px 24px 16px;
+  border-bottom: 1px solid var(--mes-line);
+  color: var(--mes-ink);
+  font-family: var(--mes-font-display);
+  font-weight: 600;
+}
+.el-drawer__body { padding: 20px 24px; }
+
+/* 折叠面板 / 步骤条圆角 */
+.el-collapse { border-radius: var(--mes-r-sm); overflow: hidden; }
+.el-steps { --el-fill-color-light: var(--mes-line); }
+
+/* 描述列表文字层级 */
+.el-descriptions__label {
+  color: var(--mes-mist);
+  font-size: 13px;
+}
+.el-descriptions__content {
+  color: var(--mes-ink);
+  font-size: 13.5px;
+}
+
+/* 标签：柔和浅色 */
+.el-tag {
+  border-radius: 8px;
+  font-weight: 500;
+}
+
+/* 弹层圆角 */
+.el-popper.is-light {
+  border-radius: var(--mes-r-sm);
+  border-color: var(--mes-line);
+  box-shadow: var(--mes-shadow-sm);
+}
+
+/* 卡片悬浮微抬升 */
+.mes-card {
+  transition: box-shadow var(--mes-dur) var(--mes-ease), border-color var(--mes-dur) var(--mes-ease);
+}
+.mes-card:hover {
+  box-shadow: var(--mes-shadow-sm);
+  border-color: var(--mes-line-strong);
+}
+
+/* 详情抽屉内的描述项分组 */
+.detail-block { margin-bottom: 22px; }
+.detail-block:last-child { margin-bottom: 0; }
+.detail-block__title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--mes-font-display);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--mes-ink);
+  margin: 0 0 12px;
+}
+.detail-block__title::before {
+  content: '';
+  width: 4px; height: 14px;
+  border-radius: 2px;
+  background: var(--mes-thread);
+}
+
+/* 表格列内数量徽标 */
+.cell-qty {
+  font-family: var(--mes-font-data);
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  color: var(--mes-ink);
+}
+
+/* 通用链接按钮组 */
+.row-actions { display: inline-flex; align-items: center; gap: 2px; }
+
+/* ============ 过渡 ============ */
+.fade-enter-active, .fade-leave-active { transition: opacity 0.22s var(--mes-ease); }
+.fade-enter-from, .fade-leave-to { opacity: 0; }
+
+/* ============ 滚动条 ============ */
+::-webkit-scrollbar { width: 9px; height: 9px; }
+::-webkit-scrollbar-thumb { background: var(--mes-line-strong); border-radius: 6px; }
+::-webkit-scrollbar-thumb:hover { background: var(--mes-mist); }
+::-webkit-scrollbar-track { background: transparent; }
+
+/* ============ 可访问性：尊重 reduced-motion ============ */
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}

@@ -1,0 +1,68 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: mes-backend
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5433/mes
+    username: mes
+    password: mes123456
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 2
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath:schema.sql
+      continue-on-error: false
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
+  global-config:
+    banner: false
+    db-config:
+      id-type: assign_id
+      logic-delete-field: isDelete
+      logic-delete-value: Y
+      logic-not-delete-value: N
+  mapper-locations: classpath*:mapper/**/*.xml
+
+# MES 自定义配置
+mes:
+  jwt:
+    # 生产环境务必通过环境变量 MES_JWT_SECRET 覆盖
+    secret: ${MES_JWT_SECRET:mes-garment-trade-jwt-secret-key-2026-please-change}
+    expire-minutes: 1440
+  ai:
+    # Lili 知识库网关地址（运行时按实际部署调整）
+    lili-base-url: ${MES_AI_LILI_BASE_URL:http://192.168.11.81:10000}
+    lili-token: ${MES_AI_LILI_TOKEN:}
+    timeout-seconds: 60
+  wechat:
+    # 微信 JS-SDK 扫码（页面内「扫码」按钮走 wx.scanQRCode）。
+    # 留空时未启用：页面内扫码自动降级为摄像头/手动输入。
+    # 需在微信公众平台「公众号设置-功能设置-JS接口安全域名」中配置部署域名（须 HTTPS）。
+    app-id: ${MES_WECHAT_APP_ID:}
+    app-secret: ${MES_WECHAT_APP_SECRET:}
+
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    path: /swagger-ui.html
+
+knife4j:
+  enable: true
+  setting:
+    language: zh_cn
+
+logging:
+  level:
+    com.garment.mes: info

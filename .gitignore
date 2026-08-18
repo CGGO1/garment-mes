@@ -1,0 +1,32 @@
+# ---- Node / Frontend ----
+node_modules/
+dist/
+*.local
+
+# ---- Java / Maven ----
+target/
+*.class
+*.log
+
+# ---- IDE ----
+.idea/
+*.iml
+.vscode/
+
+# ---- OS ----
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# ---- Local tooling / private notes ----
+.workbuddy/
+.codex/
+.agents/
+
+# ---- Environment / secrets ----
+.env
+.env.*
+!.env.example
+
+# ---- Temp ----
+tmp/

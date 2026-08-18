@@ -1,0 +1,22 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: mes-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: mes
+      POSTGRES_USER: mes
+      POSTGRES_PASSWORD: mes123456
+      TZ: Asia/Shanghai
+    ports:
+      - "5433:5432"
+    volumes:
+      - mes-postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U mes -d mes"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  mes-postgres-data:
